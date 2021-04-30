@@ -1,0 +1,19 @@
+Definition - A network access control list (ACL) defines the set of firewall rules for controlling traffic coming in and out of subnets in your VPC.
+
+You can view the Network ACLs under the Security section in the left navigation pane of the VPC Dashboard. See a snapshot below:
+
+
+Snaphot: VPC Dashboard → Network ACLs
+
+The details of the items highlighted in red in the snapshot above are:
+
+1. List of Network ACLs
+For each Network ACL in the list, view the ID, the count of associated subnets, whether it is a Default, the VPC Id to whom the network ACL is associated, and the owner ID.
+
+2. Details of the Selected Network ACL
+View the details of the selected Network ACL. In the snapshot above, it shows the details of a default Network ACL. Note that each VPC automatically gets associated with a modifiable default network ACL. Each subnet in your VPC must be associated with any one network ACL. Whereas, a given network ACL can be associated with multiple subnets.
+
+Inbound/Outbound Rules
+The default network ACL allows all inbound and outbound IPv4 traffic, as shown in the snapshot above. However, you can create or edit the rules, anytime.
+Inbound/Outbound rules are numbered and ordered. The lowest numbered rule is evaluated first. In other words, the incoming/outgoing traffic to/from a given subnet follows the rules mentioned in the associated network ACL.
+Network ACLs are stateless in nature. Assume an inbound request arrived in your subnet. A "response" to the inbound request can only be sent out of the subnet if the outbound rules allow the outgoing traffic to the desired destination. A vice-versa scenario is also possible.

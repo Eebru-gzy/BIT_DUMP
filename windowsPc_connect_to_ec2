@@ -1,0 +1,17 @@
+Windows users
+Windows users can log in using PuTTY utility. The following are the steps:
+
+Download, and install the PuTTY utility suite in your Windows machine from https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html .
+You will need to have your PuTTY Private Key (.ppk) file locally. For this reason, we will use PuTTYgen utility to convert the .pem file to .ppk format.
+Run the PuTTYgen in your machine.
+Click Load, as shown in the snapshot below.
+Browse and load the .pem key into the PuTTYgen and then click on Save private key to save the key in .ppk format without a passphrase.
+
+
+Run the PuTTY to connect to the EC2 instance.
+Get the public DNS / IP address of your EC2 instance (host) from your AWS EC2 dashboard. Then, enter the public DNS / IP address of your EC2 instance (host) into the PuTTY . See snapshot below.
+
+Click on Connection → Data to enter the default username as ubuntu for Ubuntu, or ec2-user for Linux based OS. The list of default usernames are listed here
+Click on Connection → SSH → Auth to upload the .ppk file. See the snapshot below:
+
+If everything is set up correctly, a terminal window would open up to log you into your Linux/Ubuntu EC2 instance.

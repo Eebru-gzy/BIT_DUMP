@@ -1,0 +1,41 @@
+Let's see the set-up wizard create an empty EBS volume, corresponding to option 2 above.
+
+A. Get Started
+To get started, go to the EC2 Dashboard, and select the Elastic Block Store → Volumes service in the left navigation pane.
+Select the Create Volume button, as shown in the screenshot below.
+
+Snapshot: EBS → Volume dashboard. You can create new volumes from here.
+
+B. Volume Specifications
+You will be taken to a set-up wizard to create a volume. You will have to specify the volume-details, as mentioned in the snapshot below.
+
+
+Snapshot: Create Volume wizard
+
+You will have to specify the following details:
+
+Volume type - AWS offers various types of volumes, as described in the table below.
+Size (GB) - Mention the size with-in limits of the type you have chosen above.
+Availability Zone - It has a default value, or you can choose your preferred AZ.
+Snapshot ID - Specify the ID of the snapshot if you wish to create a volume from an existing snapshot. Remember, a snapshot is the saved state of another volume at a particular moment.
+Tag - Specify the key-value pair, such as {Name: Udacity_Demo_Volume}
+Volume Types
+AWS allows the following types of volumes to be created. Each type of volume has its service capacity. Choose a type based on the underlying application.
+
+Volume Type	                          Min(GB)	    Max (GB)	    I/O per sec
+General Purpose SSD (gp2)	              1	         16384	      [100 - 3000] IOPS
+Provisioned IOPS SSD (io1) and (io2)	  4	         16384	      [100-64000] IOPS
+Cold HDD (sc1)	                        500	       16384	      Not applicable
+Throughput Optimized HDD (st1)	        500	       16384	      Not applicable
+Magnetic (standard)	                    1	         1024	        100 IOPS (avg)
+
+
+According to AWS:
+
+General Purpose SSD volumes can serve at a rate of [100-3000] IOPS with a consistent baseline of 3 IOPS/GB.
+
+Provisioned IOPS SSD volumes can deliver up to 64000 IOPS, and are best for EBS-optimized instances.
+
+Cold HDD and Throughput Optimized HDD types of volume have their predefined throughput (MB/s) with a standard baseline.
+
+Magnetic volumes, previously called standard volumes, deliver 100 IOPS on average.

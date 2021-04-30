@@ -1,0 +1,45 @@
+Let's have an overview of the information available on the EC2 dashboard.
+
+
+Snapshot: EC2 Dashboard
+
+The details of the items highlighted in red above are:
+
+1. Resource Summary
+It presents the summary of all the EC2 resources running in a particular region. Currently, it is showing one instance (running state), one key pair, zero load balancers, two security groups, and one volume (storage). A few of these resources, such as key-pairs, security groups, and load balancers are modular in nature, meaning, they can be re-utilized to launch another EC2 instance.
+2. Instances
+The simplest form of the EC2 Instance is the pay as you go, the on-demand instance, and that's this type of instance created using the default Launch wizard available on the EC2 dashboard. It's just the normal one pay as you go.
+
+Instances - It shows the list and details of the instances running in a given region.
+Instance Types - It shows the list of instance types (different combinations of hardware - CPU, storage, memory, architecture) available to launch a new instance.
+Launch Templates - These are the scripts that contain configuration information written either in JSON or YAML format to automate instance launches, simplify permission policies, and enforce best practices across your organization.
+Spot Requests - Spot is where you actually bid on an instance. If the price falls below your bid, the instance is automatically spun up and if the price goes above your bid, the server is automatically terminated. So this is good if you have an application that has a flexible start and stop time.
+Reserved Instances - This is where you sign a contract for your EC2 Instance in either one to three years and you get a huge discount. So, this is good when you know the steady-state for your applications and you want to pay upfront.
+Dedicated Hosts - This is where you have your own dedicated hardware. You may have license requirements for certain software packages that say no multi-tenancy. Meaning that you cannot run that application on a shared server. So Dedicated Hosts would solve that problem.
+Capacity Reservations - This allows you to reserve the desired capacity (count) of instances in a particular availability zone. The reserved capacity is charged at the selected instance type’s On-Demand rate whether an instance is running in it or not.
+See the detailed summary of all types and purchasing options here.
+
+3. Images
+AWS provides an option to create custom AMIs. Alternatively, you can use Images owned by Amazon and others. The AMI dashboard shows the Images owned by you. You can build a custom Image by using the EC2 Image Builder wizard available on this dashboard.
+4. Elastic Block Store (EBS)
+In simple words, you can think of EBS as an external hard drive that we attach to the server for additional storage.
+
+Volumes - It shows the list and details of all the volumes currently available to use. You can re-purpose a volume, meaning, you can anytime attach or detach a volume to any instance. You can create new volumes by using the Create Volume wizard. AWS provides the option to have a variety of volumes, such as general-purpose solid-state drive (SSD), provisioned SSD, general hard-disk (HDD), throughput-optimized HDD, or magnetic drives. Each type of volume has a different serving capacity, such as the number of I/O operations per second.
+Snapshots - A snapshot is the saved state of the data in the (existing) volume at a particular moment. Snapshots can be used to transfer volumes from one instance to another or saving the state for future use.
+Lifecycle Manager - It helps to schedule and manage the creation and deletion of EBS snapshots.
+
+Snapshot: EC2 Dashboard (Scrolled down)
+
+5. Network & Security
+Security Groups - A security group acts as firewall rules that control the traffic for EC2 instances or virtual private clouds (VPC). You can define multiple security groups. A given security group can be assigned to multiple EC2 instances.
+
+When you launch an instance, you can specify one or more security groups. You can modify the rules for a security group at any time; the new rules are automatically applied to all instances that are associated with the security group.
+
+Elastic IP addresses - An Elastic IP address is a static IPv4 address. Assume you have a server running on an EC2 instance, that has a specific IP address. In case, the instance fails, the back-up instance will spin up. The back-up instance will have a different IP address, which will require you to update the IP address used in your client application. This problem can be solved by using the elastic IP address. An Elastic IP address can mask the failure of an instance by remapping the current IP address to another instance in your account.
+Placement Group - You can imagine the EC2 instances as VMs running on the real servers in a data center. By default, the EC2 instances that you launch will be spread out across underlying hardware. But, sometimes there is a requirement to place the group of interdependent instances to meet the needs of your workload. AWS allows to place the instances based on either of the following placement strategies - cluster (tightly packed), partition (logically grouped), or spread evenly across the underlying hardware.
+Key Pairs - A key-pair is pair of (encrypted) public and (unencrypted PEM encoded) private keys. The public key is placed automatically on the instance, and the private key is made available to the user, just once. You can only log in to your running instance with the help of your private key.
+Network Interfaces - A network interface represents a virtual network card in a VPC, and it has a both private and public IP addresses. When you create an instance, a default network interface is attached to it. In this dashboard, you can create and attach additional network interfaces to any instance. An EC2 instance can have multiple network interfaces.
+6. Load Balancing
+Load Balancer - A load balancer distributes the incoming traffic across multiple targets, such as EC2 instances in one or more Availability Zones. AWS supports three types of load balancers: Application Load Balancers, Network Load Balancers (new), and Classic Load Balancers (might become deprecated soon).
+7. EC2 Auto Scaling
+It is a service that automatically launches/terminates EC2 instances based on user-defined scaling policies, scheduled actions, and health checks. It ensures that you have a specified number of instances always up and running. You can specify the minimum and maximum count of instances. This service uses launch templates, i.e., a script containing the configuration details of the instances that will be launched automatically.
