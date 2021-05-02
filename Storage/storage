@@ -1,0 +1,9 @@
+High durability means data placed in the cloud would not be loosed
+Availability is how quickly one can access their data
+High Availability provides fast and reliable access to the data store in the cloud.
+Scalability allows aplications runnning in ones' environment to always meet demand seamlesly by adding or removing resources neccessary to maintain steady state and fast response time.
+
+3 types of scaling
+Vertical Scaling aka scaling up: is adding more capacity like disk, CPU to the server,
+Horizontal scaling or scaling out: is addingmore servers to the server being used
+Diagonal scaling: is the combination of both

@@ -1,0 +1,56 @@
+S3 bucket name must be globally unique, but bucket can be in regions, it is a global service.
+The bucket name must be unique worldwide, and must not contain spaces or uppercase letters.
+S3 is designed to have durability of 99.999999999% of objects across multiple AZ and 99.99 Availability over a year
+S3 usecases:
+Static websites
+content delivery
+back up and recovery
+archiving and big data
+application data
+hybrid cloud storage
+
+S3 storage classes
+They essentially different data access levels for data at certain price points
+
+Glaciers are places where you keep data you dont intend to access frequently
+It is cheaper than the S3 standard class.
+Data retrieval can be up to minutes - hours
+
+Storage Classes lists:
+S3 Standard
+S3 Glacier
+S3 Glacier Deep Archive
+S3 Intelligent-Tiering
+S3 Standard Infrequent Access
+S3 One Zone-Infrequent Access
+
+Tips
+S3 is found under the Storage section on the AWS Management Console.
+A single object can be up to 5 terabytes in size.
+You can enable Multi-Factor Authentication (MFA) Delete on an S3 bucket to prevent accidental deletions.
+S3 Acceleration can be used to enable fast, easy, and secure transfers of files over long distances between your data source and your S3 bucket.
+
+
+S3 ARN sample: Amazon resource name (ARN): arn:aws:s3:::mtvbucket.
+
+
+
+Details of an Existing Bucket
+1. Properties
+There are several properties that you can set for S3 buckets, such as:
+
+Bucket Versioning - Allows you to keep multiple versions of an object in the same bucket.
+Static website hosting - Mark if the bucket is used to host a website. S3 is a very cost-effective and cheap solution for serving up static web content.
+Requester pays - Make the requester pays for requests and data transfer costs.
+Server access logging - Log requests for access to your bucket.
+Permissions
+It shows who has access to the S3 bucket, and who has access to the data within the bucket. In the example snapshots above, the bucket is public, meaning anyone can access it. Here, we can write an access policy (in JSON format) to provides access to the objects stored in the bucket.
+
+2. Metrics
+View the metrics for usage, request, and data transfer activity within your bucket, such as, total bucket size, total number of objects, and storage class analysis.
+
+3. Management
+It allows you to create life cycle rules to help manage your objects. It includes rules such as transitioning objects to another storage class, archiving them, or deleting them after a specified period of time.
+
+4. Access points
+Here, you can create access endpoints for sharing the bucket at scale. Using an endpoint, you can perform all regular operations on the bucket.
