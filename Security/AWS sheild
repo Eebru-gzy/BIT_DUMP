@@ -1,0 +1,12 @@
+
+AWS Shield
+AWS Shield is a managed DDoS (or Distributed Denial of Service) protection service that safeguards web applications running on AWS. AWS Shield offers two tiers of protection - Standard and Advanced.
+
+Standard tier: Standard AWS Shield is a service that you get "out of the box", it is always running (automatically) and is a part of the free standard tier.
+Advanced tier: If you want to use some of the more advanced features, you'll have to utilize the paid tier.
+The standard AWS Shield Standard is always-on, using techniques to detect malicious traffic.
+
+
+A sample summary of events detected by AWS Shield globally for two weeks.
+
+If you want to view the threat-event summary for resources in your account, you will have to subscribe to the Shield Advanced. The summary will include statistics, such as total events, largest bit rate, largest packet rate, and the largest request rate.
