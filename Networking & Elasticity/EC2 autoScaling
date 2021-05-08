@@ -1,0 +1,38 @@
+EC2 Auto Scaling
+EC2 Auto Scaling is a service that monitors your EC2 instances and automatically adjusts by adding or removing EC2 instances based on conditions you define in order to maintain application availability and provide peak performance to your users.
+
+Features
+Automatically scale in and out based on needs.
+Included automatically with Amazon EC2.
+Automate how your Amazon EC2 instances are managed.
+Tips
+EC2 Auto Scaling is found on the EC2 Dashboard.
+EC2 Auto Scaling adds instances only when needed, optimizing cost savings.
+EC2 predictive scaling removes the need for manual adjustment of auto scaling parameters over time.
+
+LAUNCH AN AUTO SCALING GROUP
+
+
+EC2 Auto Scaling is a service that ensures you have the desired number of EC2 instances always up and running to handle the expected load for your application. To set-up an Auto Scaling group, you require the following basic details:
+
+Count of instances - The desired count of the EC2 instances you want to have available. If any instance goes down/fails, a new instance automatically spins up.
+
+Launch template - The auto scaling group contains a collection of EC2 instances that are treated as a logical group. All EC2 instances within a group share the same configuration. Therefore, You need to specify the configuration details, such as, the ID of the Amazon Machine Image (AMI), the instance type, a key pair, security groups, and the other parameters that you use to launch EC2 instances. You specify the configuration details in a Launch template.
+
+Scaling policy - The auto scaling policy that defines how to scale your EC2 instances automatically, based on demand
+A. Start the Auto Scaling Groups service
+Go to the EC2 Dashboard, and select the Auto Scaling Groups service from the left navigation pane. See the snapshot below. For first time users, it may take you to the homepage. Please devote a moment to read through the introduction.
+
+
+Snapshot: EC2 Dashboard → Auto Scaling Groups service
+
+B. Create an Auto Scaling group
+The Create Auto Scaling group is a seven-step process, as shown in the snapshot below. Provide a launch template or configuration in the first step. AWS prefers launch templates over launch configuration files. (Although, both convey similar information.) If you do not have a pre-created launch template, you can create a launch template from the current step.
+
+
+Snapshot: Create an Auto Scaling group wizard
+
+In the remaining steps, you can configure group size, scaling policies, notifications settings, and tags. The group size allows you to mention the minimum, maximum, and desired number of instances in the group, such that min <= desired <= max. For scaling policies, you can create and add either a step/simple/target scaling policy.
+
+Launch template
+As mentioned above, a launch template specifies the configuration details, such as, the ID of the Amazon Machine Image (AMI), the instance type, a key pair, security groups, and the other parameters that you use to launch EC2 instances. See a quick video below to see the information available in a launch template.
