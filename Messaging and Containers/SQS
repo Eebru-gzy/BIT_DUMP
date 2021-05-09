@@ -1,0 +1,99 @@
+Queues
+A queue is a data structure that holds requests called messages. Messages in a queue are commonly processed in order, first in, first out (or FIFO).
+
+Messaging queues improve:
+
+performance
+scalability
+user experience
+
+
+Simple Queue Service
+Amazon Simple Queue Service (SQS) is a fully managed message queuing service that allows you to integrate queuing functionality in your application. SQS offers two types of message queues: standard and FIFO.
+Features
+send messages
+store messages
+receive messages
+Tips
+The Simple Queue Service (SQS) is found under the Application Integration on the AWS Management Console.
+FIFO queues support up to 300 messages per second.
+FIFO queues guarantee the ordering of messages.
+Standard queues offer best-effort ordering but no guarantees.
+Standard queues deliver a message at least once, but occasionally more than one copy of a message is delivered.
+
+
+
+
+CREATE A QUEUE:
+
+Let's see how to create an SQS queue, and learn to send/receive messages.
+
+A. Queues Dashboard
+From the AWS management console, select SQS (Simple Queue Service), or you can directly go to the Queues dashboard. Start the Create queue wizard from there.
+
+
+Launch Create queue from Amazon SQS homepage
+
+
+Launch Create queue from Queues dashboard
+
+B. Create a Queue
+A queue can be created quickly in three steps:
+
+General details - Provide a case-sensitive name, and choose the type of queue - Standard or FIFO, you want to create. A standard queue supports an unlimited number of transactions per second (TPS) for each API action (SendMessage, ReceiveMessage, or DeleteMessage). Whereas, FIFO queues support up to 3000 messages per second while strictly preserving the message order.
+
+Snapshot: Create queue - General details
+
+Configuration details - You can set the following items:
+
+Visibility timeout - The time-duration (0 seconds - 12 hours) after which a consumer message can become visible to the other consumers. Generally, the consumer must process and delete a message from the queue.
+
+
+Message retention period - The duration (1 minute - 14 days) for which the queue retains a message that does not get deleted. Amazon SQS will automatically delete messages that have been in a queue for more than the specified period.
+
+
+Delivery delay - The time (0 seconds - 15 minutes) to intentionally delay the delivery of each (new) message added to the queue. According to AWS:
+
+If your consumers need additional time to process messages, you must delay each new message coming to the queue.
+
+Maximum message size - It should be between 1 KB and 256 KB.
+
+Snapshot: Create queue - Configuration details
+
+Access policy - You can define specifically who can send/receive messages to/from your queue. Choose the queue owner, or specified AWS accounts, IAM users, and roles as sender/receiver. The access policy can also be defined in JSON format.
+
+Snapshot: Create queue - Access policy
+
+C. Details of an Existing Queue
+Select a queue from the Queues dashboard to view the basic details and configuration.
+
+
+Snapshot: Details of an existing queue
+
+In the snapshot above, the URL https://sqs.us-east-2.amazonaws.com/014421265158/MyQueue is an essential field to use in your application components. In addition, you can also view details about the Lambda triggers, and the access policy. You can even monitor various metrics, such as approximate age of message, the number of messages sent/received/delayed/deleted/empty receives, and size consumed by sent messages.
+
+D. Send and receive messages
+For the selected queue, you can either send/receive messages or configure Lambda function trigger. Let's see how to send and receive messages using a Standard queue.
+
+Send message
+Specify the message body and delay duration while sending a message. As stated earlier, you must add a delay to each new message, if your consumers need additional time to process messages. In other words, your consumer will receive the message only after the duration specified here.
+
+You can also mention the metadata, such as timestamps, geospatial data, signatures, and identifiers in the form of Message attributes.
+
+In a FIFO queue, there is an additional concept of message group, to ensures that the messages belonging to a particular group are processed in a strict order.
+
+
+Snapshot: Message body and delay duration while sending a message
+
+Receive messages
+A consumer cannot choose a specific message to receive. Instead, a consumer polls to receive up to 10 number of messages from the queue. The snapshot below shows a message received after polling. The default polling duration is set to 30 seconds.
+
+Next, click on the message ID to view the message details, body, and metadata. Later, delete the message manually, if not in use.
+
+
+Snapshot: Poll for messages to receive messages
+
+
+Snapshot: View the message details, body, and metadata.
+
+Note: SQS pricing is based on the count and size of messages, and the interactions with Amazon S3 and the AWS Key Management Service.

@@ -1,0 +1,40 @@
+What is Elastic Container Service (ECS)?
+ECS is an orchestration service used for automating deployment, scaling, and managing of your containerized applications. ECS works well with Docker containers by:
+
+launching and stopping Docker containers
+scaling your applications
+querying the state of your applications
+Tips
+ECS falls under the Compute section on the AWS Management Console.
+You can schedule long-running applications, services, and batch processeses using ECS.
+Docker is the only container-runtime platform supported by Amazon ECS. Other container-runtime tools available in the insdustry are Rocket, LXD, OpenVZ, any a few more.
+
+
+
+
+
+How does Amazon ECS helps?
+Assume you have a multi-container application that you want to run on the cloud. You may also require to scale the containers automatically based on the incoming traffic in such a case.
+
+Amazon ECS deploys, manages, and scales containers based on your resource needs and supports other AWS services like Elastic Load Balancing, EC2 security groups, EBS volumes, and IAM roles.
+
+Key terms related to Amazon ECS
+Task definition
+A task definition describes the application requirements concerning containers, such as the max amount of total CPU and memory used for the task (not for the individual container) and container definitions.
+
+ECS offers to create a task definition using either the AWS Fargate or AWS EC2. AWS Fargate is priced based on the task size, whereas the EC2 service is priced based on computing resource usage.
+
+
+You can create a task definition using either the AWS Fargate or AWS EC2
+
+          Either way, you can add a container definition, as shown in the snapshot below.
+
+
+Add a container definition
+
+ECS cluster
+A cluster is a set of containers running task requests within an AWS region. A default cluster gets created when you create and run your first task definition.
+Container agent
+It is a utility that connects container instances to one of your clusters. Each container instance runs a container agent.
+Container instance
+A container instance is an EC2 instance that is registered into any of your ECS clusters.
