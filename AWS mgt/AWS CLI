@@ -1,0 +1,249 @@
+AWS Command Line Interface (CLI)
+The AWS CLI (or Command Line Interface) allows you to access and control services running in your AWS account from the command line. To use the CLI, simply download, install, and configure it.
+
+Tips
+The AWS CLI allows you to work with AWS services in a programmatic manner
+
+
+
+_______________________________
+
+
+
+The AWS Command Line Interface (AWS CLI) is a command-line tool that allows you to interact with AWS services using commands in your terminal/command prompt.
+
+AWS CLI enables you to run commands to provision, configure, list, delete resources in the AWS cloud. Before you run any of the aws commands, you need to follow three steps:
+
+Install AWS CLI
+Create an IAM user with Administrator permissions
+Configure the AWS CLI
+Step 1. Install AWS CLI v2
+Refer to the official AWS instructions to install/update AWS CLI (version 2) based on your underlying OS. You can verify the installation using the following command in your terminal (macOS)/cmd (Windows).
+
+# Display the folder that contains the symlink to the aws cli tool
+which aws
+# See the current version
+aws --version
+See the sample output below. Note that the exact version of AWS CLI and Python may vary in your system.
+
+
+Mac/Linux/Windows: Verify the successful installation of AWS CLI 2
+
+Step 2. Create an IAM user
+In this step, you will create an IAM user with Administrator permissions who is allowed to perform any action in your AWS account, only through CLI. After creating such an IAM user, we will use its Access key (long-term credentials) to configure the AWS CLI locally.
+
+Let’s create an AWS IAM user, and copy its Access key.
+
+AWS Identity and Access Management (IAM) service allows you to authorize users / applications (such as AWS CLI) to access AWS resources.
+
+The Access key is a combination of an Access Key ID and a Secret Access Key. Let's see the steps to create an IAM user, and generate its Access key.
+
+Navigate to the IAM Dashboard, and create an IAM user.
+
+Add a new IAM user
+
+Set the user details, such as the name, and access type as Programmatic access only.
+
+Set the user name, and type (mode) of access
+
+Set the permissions to the new user by attaching the AWS Managed AdministratorAccess policy from the list of existing policies.
+
+Attach the AdministratorAccess policy from the list of pre-created policies
+
+Provide tags [optional], review the details of the new user, and finally create the new user.
+After a user is created successfully, download the access key file (.csv) containing the Access Key ID and a Secret Access Key. You can even copy the keys and stay on the same page. Don’t skip this step as this will be your only opportunity to download the secret access key file.
+
+Copy the Access key of the new user OR download the .csv file containing the Access key
+
+Step 3. Configure the AWS CLI
+You will need to configure the following four items on your local machine before you can interact with any of the AWS services:
+
+Access key - It is a combination of an Access Key ID and a Secret Access Key. Together, they are referred to as Access key. You can generate an Access key from the AWS IAM service, and specify the level of permissions (authorization) with the help of IAM Roles.
+Default AWS Region - It specifies the AWS Region where you want to send your requests by default.
+Default output format - It specifies how the results are formatted. It can either be a json, yaml, text, or a table.
+Profile - A collection of settings is called a profile. The default profile name is default, however, you can create a new profile using the aws configure --profile new_name command. A sample command is given below.
+If you have closed the web console that showed the access key, you can open the downloaded access key file (.csv) to copy the keys later. It should be something similar to:
+
+AWSAccessKeyId=WANI9WATIG63GKCXA89VC74A
+AWSSecretKey=kMT2Jn5NPkq1GxtoUqwUbgHtPbsf1ODm/Pbsf1OD
+
+Mac/Linux: List your present configuration, and then configure your default aws profile
+
+Set the default profile credentials
+
+# Navigate to the home directory
+cd
+# If you do not use the profile-name, a default profile will be created for you.
+aws configure --profile <profile-name>
+# View the current configuration
+aws configure list --profile <profile-name>
+# View all existing profile names
+aws configure list-profiles
+# In case, you want to change the region in a given profile
+# aws configure set <parameter> <value>  --profile <profile-name>
+aws configure set region us-east-1  --profile <profile-name>
+Moving forward, you can use --profile <profile-name> option with any AWS command. This will resolve the conflict if you have multiple profiles set up locally.
+
+The command above will store the access key in a default file ~/.aws/credentials and store the profile in the ~/.aws/config file. Upon prompt, paste the copied access key (access key id and secret access key). Enter the default region as us-east-1 and output format as json.
+
+Let the system know that your sensitive information is residing in the .aws folder
+export AWS_CONFIG_FILE=~/.aws/config
+export AWS_SHARED_CREDENTIALS_FILE=~/.aws/credentials
+
+Mac/Linux: A successful configuration
+
+After a successful credential set-up, your "credentials" file will look like:
+
+Mac/Linux: View the credentials file using cat ~/.aws/credentials command
+
+Windows users with GitBash only
+You will have to set the environment variables. Run the following commands in your GitBash terminal:
+setx AWS_ACCESS_KEY_ID AKIAIOSFODNN7EXAMPLE
+setx AWS_SECRET_ACCESS_KEY wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+setx AWS_DEFAULT_REGION us-west-2
+Replace the access key ID and secret, as applicable to you. Windows users using WSL do not need this step, they will follow all steps as if they are Linux users.
+
+Windows: Successful configuration using the GitBash terminal
+
+Step 4. Run your first AWS CLI command
+Check the successful configuration of the AWS CLI, by running either of the following AWS command:
+# If you've just one profile set locally
+aws iam list-users
+# If you've multiple profiles set locally
+aws iam list-users --profile <profile-name>
+The output will display the details of the recently created user:
+{
+"Users": [
+    {
+        "Path": "/",
+        "UserName": "Admin",
+        "UserId": "AIDAZMXYZ3LY2BNC5ZM5E",
+        "Arn": "arn:aws:iam::388752792305:user/Admin",
+        "CreateDate": "2021-01-28T13:44:15+00:00"
+    }
+]
+}
+Troubleshoot
+If you are facing issues while following the commands above, refer to the detailed instructions here -
+
+Configuration basics
+Configuration and credential file settings
+Environment variables to configure the AWS CLI
+Updating the specific variable in the configuration
+In the future, you can set a single value, by using the command, such as:
+
+# Syntax
+# aws configure set <varname> <value> [--profile profile-name]
+ aws configure set default.region us-east-2
+It will update only the region variable in the existing default profile.
+
+
+
+
+
+_________________________________
+
+
+Topics Covered:
+Using the AWS console, create a new IAM user with Programmatic administrator access. We will delete this user programmatically at the end of the exercise.
+Using the CLI tool, create a bucket, upload a file to it, and then delete the bucket
+Using the CLI tool, delete an IAM user
+Step 1. Create a new IAM user
+Let's create a new IAM user who would be allowed to interact with services in your AWS account as an administrator. The AWS allows us to choose if the new user should be granted a Programmatic access, or AWS web console access. The permissions to a user are granted in form of Policies, which are JSON documents. The AWS web console provides a pre-created list of policies to choose from.
+
+Navigate to the IAM console, and access the IAM Users service. Start the Add user wizard, as shown below.
+
+Launch the Add user wizard
+
+Set the user details, such as the name, and access type as Programmatic access only.
+
+Set the user name, and type (mode) of access
+
+Set the permissions to the new user by attaching the AWS Managed AdministratorAccess policy from the list of existing policies.
+
+Attach the AdministratorAccess policy from the list of pre-created policies
+
+Provide tags [optional], review the details of the new user, and finally create the new user.
+Download the Access key file (.csv) that contains two items: an access key ID, and a secret. Don’t skip this step as this will be your only opportunity to download the Access key file.
+
+After a user is created successfully, download the access key file (.csv) containing the access key ID and a secret
+
+Step 2. Configure a new profile in the AWS CLI
+Now, to allow the newly created user to interact with the AWS services via CLI, configure the access key in your CLI tool. Let's create a new profile UdacityLab, and associate the newly created access key to it. You can use the following commands:
+
+# Navigate back to your home folder 
+cd
+# Set the UdacityLab profile credentials in the "credentials"  and "config" file
+aws configure --profile UdacityLab
+It will prompt you to enter the following four values:
+
+AWS Access Key ID - Paste the value from the downloaded access key file
+AWS Secret Access Key - Paste the value from the downloaded access key file
+Default region name - Enter your preferred region name, such as us-east-2
+Default output format - It can accept either a json, yaml, text, or a table. Enter json for this exercise.
+You can review the current configuration as:
+
+# Check the configuration
+aws configure list
+#View the content of the credentials and configuration file
+cat ~/.aws/credentials
+cat ~/.aws/config
+If you haven't configured any profile ever, you can set the environment variables as well.
+
+# Let the system know that your sensitive information is residing in the .aws folder
+export AWS_CONFIG_FILE=~/.aws/config
+export AWS_SHARED_CREDENTIALS_FILE=~/.aws/credentials
+Note - You can create multiple profiles, and use a specific one in any aws command using the --profile <profile-name> option.
+
+Step 3. Interact with S3 service
+Create a public bucket with name my-033212455158-bucket in the us-east-1 region, using the newly created UdacityLab profile.
+
+aws s3api  create-bucket --bucket my-033212455158-bucket --acl public-read-write --region us-east-1 --profile UdacityLab
+In the command above,
+
+--bucket option specifies the bucket name of your choice. It must be unique across all AWS accounts.
+--profile option specifies the profile whose credentials will be verified for authorization before accessing the S3 service. This option is OPTIONAL. If skipped, the aws CLI will use the default profile stored in your system.
+--acl option specifies the accessibility level
+--region specifies the AWS region where you want to create this bucket
+Reference - aws s3api create-bucket command
+
+Upload a file to your bucket. The command below uploads a file names Sample.html, however, you can choose any file from your local system.
+
+aws s3api put-object --bucket my-033212455158-bucket --key Sample.html --body Sample.html --profile UdacityLab
+In the command above,
+
+--key option specifies the name you want to assign to your object in the bucket
+--body option specifies the file name (complete path) to upload from your local system
+Reference aws s3api put-object
+
+Verify the S3 bucket by going to the AWS web console.
+
+A public bucket created using the CLI
+
+Delete the bucket and its content. A bucket can only be deleted if it is empty. Therefore, first delete the Sample.html, and then delete the bucket, as follows:
+aws s3api delete-object --bucket my-033212455158-bucket --key Sample.html
+aws s3api delete-bucket --bucket my-033212455158-bucket --profile UdacityLab
+Reference - aws s3api commands
+Navigate back to the S3 dashboard (AWS web console), and verify if the bucket has been deleted successfully.
+Step 4. [Optional] Delete the newly created UdacityLab IAM user
+Remember, you created the UdacityLab IAM user using the AWS web console. However, you can delete the newly created UdacityLab IAM user from your CLI tool as well.
+
+Note - We are assuming that your AWS root user access key is set in the default profile using the command aws configure --profile default. Use the cat ~/.aws/credentials command to list all the credentials set locally.
+
+View the list of all users (other than the root user) in your AWS account.
+aws iam list-users
+A user can only be deleted only after deleting the attached user policies, and access key. The commands below are executed using the default profile, therefore we have not used the --profile option.
+
+# List the policies attached to the UdacityLab user
+aws iam list-attached-user-policies --user-name UdacityLab
+# A policy can be detached using its ARN, a unique identifier
+aws iam detach-user-policy --user-name UdacityLab --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+# List the access key for UdacityLab user
+aws iam list-access-keys --user-name UdacityLab
+# An access key can be deleted using its access key id
+aws iam delete-access-key  --user-name UdacityLab --access-key-id AKIAQGW4TBMDIZQP564S
+# Delete the user
+aws iam delete-user --user-name UdacityLab
+Reference - aws iam commands
+
+Navigate back to the IAM console, and access the IAM Users service to verify if the user has been successfully deleted.
