@@ -141,8 +141,7 @@ It will update only the region variable in the existing default profile.
 
 
 
-_________________________________
-
+________________________________
 
 Topics Covered:
 Using the AWS console, create a new IAM user with Programmatic administrator access. We will delete this user programmatically at the end of the exercise.
