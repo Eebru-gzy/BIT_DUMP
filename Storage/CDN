@@ -77,15 +77,13 @@ Select the CloudFront service from the Services menu at the top left corner of y
 Start the Create Distribution wizard.
 Under the Web delivery method, click the Get Started button, and use the following details to create a distribution:
 Section	Field	Value
-Origin Settings	Origin Domain Name	Select the S3 bucket that you created in the step above
-Origin Path	Enter / to indicate the root level
-Restrict Bucket Access	Yes
-Origin Access Identity	Create a New Identity
-(Allow access to the S3 content using CloudFront URL)
-Grant Read Permission on Bucket	Yes, Update Bucket Policy
-Automatically updates the bucket access policy in S3
-to allow CloudFront to access the bucket content
-Default Cache Behavior Settings	Viewer Protocol Policy	Redirect HTTP to HTTPS
+Origin Settings	|  Origin Domain Name |	Select the S3 bucket that you created in the step above
+                |  Origin Path	        |  Enter / to indicate the root level
+                |  Restrict Bucket Access |	Yes
+                |  Origin Access Identity	| Create a New Identity (Allow access to the S3 content using CloudFront URL)
+                |  Grant Read Permission on Bucket	Yes, Update Bucket Policy Automatically updates the bucket access policy in S3 to allow CloudFront to access the bucket content
+Default Cache Behavior | Settings	Viewer Protocol | Policy	Redirect HTTP to HTTPS
+
 In the configuration table above, the Grant Read Permission on Bucket says that "Yes, update access bucket policy automatically to allows the Origin Access Identity user access to the bucket content." Origin Access Identity user represents the CloudFront service. The policy is a JSON file that defines the access permissions to the bucket object.
 
 Leave the defaults for the rest of the options. It may take up to 10 minutes for the CloudFront Distribution to get created. Upon successful creation of the CloudFront distribution, the S3 bucket access policy will also get updated automatically, as shown below.
